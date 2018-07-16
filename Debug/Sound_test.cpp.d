@@ -1,7 +1,6 @@
 C:\Users\Justin\AppData\Local\Temp\VMBuilds\Sound_test\teensy35\Debug\Sound_test.cpp.o: \
  C:\Users\Justin\AppData\Local\Temp\VMBuilds\Sound_test\teensy35\Debug\Sound_test.cpp \
- C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/WProgram.h \
+ C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/wprogram.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/avr/pgmspace.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/avr/interrupt.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/avr_functions.h \
@@ -36,6 +35,7 @@ C:\Users\Justin\AppData\Local\Temp\VMBuilds\Sound_test\teensy35\Debug\Sound_test
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/WCharacter.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/elapsedMillis.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/Arduino.h \
+ C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/WProgram.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/IntervalTimer.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\libraries\Audio/Audio.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\cores\teensy3/DMAChannel.h \
@@ -118,5 +118,4 @@ C:\Users\Justin\AppData\Local\Temp\VMBuilds\Sound_test\teensy35\Debug\Sound_test
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\libraries\Wire/WireKinetis.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\libraries\Adafruit_GFX/Adafruit_GFX.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\teensy\avr\libraries\Adafruit_GFX/gfxfont.h \
- C:\Users\Justin\Documents\Arduino\libraries\Adafruit_IS31FL3731_Library/Adafruit_IS31FL3731.h \
- C:\Program\ Files\ (x86)\Microsoft\ Visual\ Studio\ 14.0\Common7\IDE\Extensions\gzbuwcyo.4xu\Micro\ Platforms\default\debuggers\VM_DBG/VM_DBG.h
+ C:\Users\Justin\Documents\Arduino\libraries\Adafruit_IS31FL3731_Library/Adafruit_IS31FL3731.h

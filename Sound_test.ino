@@ -10,6 +10,7 @@ Adafruit_IS31FL3731 ledmatrix = Adafruit_IS31FL3731();
 uint8_t sweep[] = { 5, 10, 15, 20, 40, 55, 70, 85, 105, 125, 140, 215, 215, 140, 125, 105, 85, 70, 55, 40, 20, 15, 10, 5 };
 #define volume 4
 #define beep_volume -10
+#define music_beep -40
 
 AudioPlaySdWav           playSdWav1;
 AudioOutputAnalogStereo  dacs1;
@@ -23,6 +24,7 @@ elapsedMillis sinceClose = 30000;
 unsigned dimmer = 0;
 bool cooking = false;
 bool thisRead = false, lastRead = false;
+bool music = false;
 
 void setup() {
   AudioMemory(8);
@@ -35,12 +37,13 @@ void setup() {
   audioamp.setGain(volume);
 
   pinMode(17, INPUT);
+  pinMode(0, INPUT);
   thisRead = lastRead = digitalReadFast(17);
 }
 
 void loop() {
 	microwave_switch();
-
+	music_button();
 	//Closed 25 seconds ago and we're cooking, ding
 	if (sinceClose >= 25000 && sinceClose <= 27000 && cooking) {
 		audioamp.setGain(beep_volume);
@@ -49,18 +52,43 @@ void loop() {
 		lights_off();
 	}
 
-	if (cooking) {
+	if (music && !playSdWav1.isPlaying()) lights_off();
+	if (cooking || music) {
 		for (uint8_t x = 0; x < 16; ++x)
 			for (uint8_t y = 0; y < 9; ++y) ledmatrix.drawPixel(x, y, sweep[(x + y + dimmer) % 24]);
 		dimmer = dimmer == 23 ? 0 : dimmer + 1;
 	}
 }
+void music_button() {
+	if (digitalReadFast(0)) return;
+	int time = millis();
+	while (!digitalReadFast(0)) {};
+	int press_time = millis() - time;
 
+	if (music) {
+		playSdWav1.stop();
+		audioamp.setGain(music_beep);
+		playSdWav1.play("BEEP.WAV");
+		lights_off();
+		delay(1000);
+		return;
+	} else {
+		if (press_time < 500) return;
+		music = true;
+		cooking = false;
+		audioamp.setGain(volume);
+		playSdWav1.play("SDTEST2.WAV");
+		delay(100);
+	}
+}
 void microwave_switch() {
 	thisRead = digitalReadFast(17); //Reads true with open door
 	if (thisRead == lastRead) return;
 	delay(10);
-
+	if (music) {
+		playSdWav1.stop();
+		music = false;
+	}
 	if (thisRead) {
 		if (cooking) {
 			audioamp.setGain(beep_volume);
@@ -85,6 +113,7 @@ void microwave_switch() {
 
 inline void lights_off() {
 	cooking = false;
+	music = false;
 	dimmer = 0;
 	for (size_t x = 0; x < 16; ++x)
 		for (size_t y = 0; y < 9; ++y) ledmatrix.drawPixel(x, y, 0);
